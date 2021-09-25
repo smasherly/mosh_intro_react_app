@@ -12,33 +12,36 @@ class Counter extends Component {
   //   value: this.props.counter.value,
   // };
 
-  // handleIncrement = () => {
-  //   if (this.state.value < 10) {
-  //     this.setState({ value: this.state.value + 1 });
-  //   } else {
-  //     this.setState({ value: 0 });
-  //   }
-  // };
-
   render() {
-    console.log("a counter  - rendered");
+    // console.log("a counter  - rendered");
 
     return (
-      <div>
-        <span className={this.getBagdeClasses()}>{this.formatCount()}</span>
-        <button
-          onClick={() => this.props.onIncrement(this.props.counter)}
-          className="btn btn-secondary btn-sm"
-        >
-          Increment
-        </button>
-        <button
-          //had to add counter before id because changed to passing just counter in parent
-          onClick={() => this.props.onDelete(this.props.counter.id)}
-          className="btn btn-danger btn -sm m-2"
-        >
-          Delete
-        </button>
+      <div className="row">
+        <div className="col-1">
+          <span className={this.getBagdeClasses()}>{this.formatCount()}</span>
+        </div>
+        <div className="col">
+          <button
+            onClick={() => this.props.onIncrement(this.props.counter)}
+            className="btn btn-secondary btn-sm"
+          >
+            +
+          </button>
+          <button
+            disabled={this.props.counter.value === 0 ? true : false}
+            onClick={() => this.props.onDecrement(this.props.counter)}
+            className="btn btn-secondary btn-sm m-2"
+          >
+            -
+          </button>
+          <button
+            //had to add counter before id because changed to passing just counter in parent
+            onClick={() => this.props.onDelete(this.props.counter.id)}
+            className="btn btn-danger btn-sm"
+          >
+            X
+          </button>
+        </div>
       </div>
     );
   }

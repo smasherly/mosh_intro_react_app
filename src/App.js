@@ -17,13 +17,13 @@ class App extends Component {
   //called only when component is rendered for the first time, initialize properties
   constructor() {
     super();
-    console.log("App-Constructor", this.props);
+    // console.log("App-Constructor", this.props);
     // this.state = this.props.something
   }
 
   componentDidMount() {
     //ajax call
-    console.log("App-Mounted");
+    // console.log("App-Mounted");
   }
 
   handleIncrement = (counter) => {
@@ -31,6 +31,13 @@ class App extends Component {
     const index = counters.indexOf(counter);
     counters[index] = { ...counter };
     counters[index].value++;
+    this.setState({ counters });
+  };
+  handleDecrement = (counter) => {
+    const counters = [...this.state.counters];
+    const index = counters.indexOf(counter);
+    counters[index] = { ...counter };
+    counters[index].value--;
     this.setState({ counters });
   };
 
@@ -48,7 +55,7 @@ class App extends Component {
   };
 
   render() {
-    console.log("App-Rendered");
+    // console.log("App-Rendered");
     return (
       <>
         <NavBar
@@ -60,6 +67,7 @@ class App extends Component {
           onReset={this.handleReset}
           onIncrement={this.handleIncrement}
           onDelete={this.handleDelete}
+          onDecrement={this.handleDecrement}
         />
       </>
     );
